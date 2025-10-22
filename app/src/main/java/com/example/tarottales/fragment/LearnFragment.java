@@ -9,21 +9,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.tarottales.Database.LearnDAO;
 import com.example.tarottales.Model.Element;
 import com.example.tarottales.Model.Planet;
 import com.example.tarottales.Model.TarotCard;
@@ -33,7 +28,6 @@ import com.example.tarottales.adapter.LearnCardAdapter;
 import com.example.tarottales.adapter.LearnElementAdapter;
 import com.example.tarottales.adapter.LearnPlanetAdapter;
 import com.example.tarottales.adapter.LearnZodiacAdapter;
-import com.example.tarottales.enumdata.EnumData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
