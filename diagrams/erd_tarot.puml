@@ -1,0 +1,89 @@
+@startuml Tarotales ERD
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "TarotCard" as tarot {
+  * id : INTEGER <<PK>>
+  --
+  * name : TEXT
+  * cardNumber : INTEGER
+  * otherName : TEXT
+  * image : INTEGER
+  keyword : TEXT
+  overview : TEXT
+  job : TEXT
+  love : TEXT
+  finance : TEXT
+  health : TEXT
+  spirit : TEXT
+}
+
+entity "Element" as element {
+  * id : INTEGER <<PK>>
+  --
+  * name : TEXT
+  * image : INTEGER
+  description : TEXT
+}
+
+entity "Planet" as planet {
+  * id : INTEGER <<PK>>
+  --
+  * name : TEXT
+  * image : INTEGER
+  description : TEXT
+}
+
+entity "Zodiac" as zodiac {
+  * id : INTEGER <<PK>>
+  --
+  * name : TEXT
+  * image : INTEGER
+  description : TEXT
+}
+
+entity "TarotCard_Element" as tc_elem {
+  * tarotCardId : INTEGER <<FK>>
+  * elementId : INTEGER <<FK>>
+  --
+  <<PK (tarotCardId, elementId)>>
+}
+
+entity "TarotCard_Planet" as tc_planet {
+  * tarotCardId : INTEGER <<FK>>
+  * planetId : INTEGER <<FK>>
+  --
+  <<PK (tarotCardId, planetId)>>
+}
+
+entity "TarotCard_Zodiac" as tc_zodiac {
+  * tarotCardId : INTEGER <<FK>>
+  * zodiacId : INTEGER <<FK>>
+  --
+  <<PK (tarotCardId, zodiacId)>>
+}
+
+note right of tarot
+  78 Tarot cards with
+  meanings for job, love,
+  finance, health, spirit
+end note
+
+note top of tc_elem
+  Many-to-Many
+  relationships
+end note
+
+tarot ||--o{ tc_elem
+element ||--o{ tc_elem
+
+tarot ||--o{ tc_planet
+planet ||--o{ tc_planet
+
+tarot ||--o{ tc_zodiac
+zodiac ||--o{ tc_zodiac
+
+@enduml

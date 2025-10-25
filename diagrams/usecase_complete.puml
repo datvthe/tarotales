@@ -1,0 +1,85 @@
+@startuml Tarotales Complete Use Case
+left to right direction
+skinparam packageStyle rectangle
+
+actor "User" as user
+
+rectangle "Tarotales System" {
+  
+  package "Daily Tarot" {
+    usecase "View Daily Tarot" as UC1
+    usecase "Draw Daily Card" as UC2
+    usecase "Navigate to Monthly" as UC3
+  }
+  
+  package "Chat with AI" {
+    usecase "Ask Tarot Question" as UC4
+    usecase "View Chat History" as UC5
+    usecase "Get AI Response" as UC6
+  }
+  
+  package "Learn" {
+    usecase "Browse Tarot Cards" as UC7
+    usecase "View Card Details" as UC8
+    usecase "Learn Elements" as UC9
+    usecase "Learn Planets" as UC10
+    usecase "Learn Zodiacs" as UC11
+  }
+  
+  package "Topic History" {
+    usecase "View Topic History" as UC12
+    usecase "View History Details" as UC13
+  }
+  
+  package "Monthly Tarot" {
+    usecase "Draw Monthly Cards" as UC14
+    usecase "View Monthly Reading" as UC15
+  }
+  
+  package "System" {
+    usecase "Auto Reset Daily (6AM)" as UC16
+    usecase "Auto Reset Monthly" as UC17
+  }
+}
+
+' User interactions
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+user --> UC7
+user --> UC8
+user --> UC9
+user --> UC10
+user --> UC11
+user --> UC12
+user --> UC14
+
+' Include relationships
+UC2 ..> UC8 : <<include>>
+UC4 ..> UC6 : <<include>>
+UC4 ..> UC5 : <<include>>
+UC7 ..> UC8 : <<include>>
+UC12 ..> UC13 : <<include>>
+UC14 ..> UC15 : <<include>>
+
+' Extend relationships
+UC16 ..> UC1 : <<extend>>
+UC17 ..> UC14 : <<extend>>
+
+note right of UC4
+  Uses Google Gemini AI
+  to answer Tarot questions
+end note
+
+note right of UC2
+  One card per day
+  Reset at 6AM
+end note
+
+note right of UC14
+  Multiple cards
+  Reset monthly
+end note
+
+@enduml

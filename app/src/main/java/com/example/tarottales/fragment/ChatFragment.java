@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class ChatFragment extends Fragment {
 
-    private String apiKey = "AIzaSyA4mTa5P9V8QtEVOPecbktLdd6LJ5umvHI";
+    private String apiKey = "AIzaSyAUX4yI7GQlHoI7WQOJ-lcCZbwNf5CSm-s";
     RecyclerView recyclerView;
     EditText messageEditText;
     ImageButton sendButton;
@@ -108,7 +108,7 @@ public class ChatFragment extends Fragment {
         messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
 
         // Setup Google Gemini model
-        GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", apiKey);
+        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", apiKey);
         GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
         // Prepare content for Gemini
