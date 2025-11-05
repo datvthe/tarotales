@@ -1,0 +1,118 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant Fragment as DailyFragment
+    participant Pref as SharedPreferences
+    participant DAO as TarotCardDAO
+    participant DB as SQLiteDatabase
+    participant Alarm as AlarmManager
+    participant Service as ResetOpenDaily
+
+    Note over User,Service: Initialize Daily View
+    User->>Fragment: Open Daily Tab
+    activate Fragment
+    
+    Fragment->>Pref: getSharedPreferences("tarotDailyDay")
+    activate Pref
+    Pref-->>Fragment: return preferences
+    deactivate Pref
+    
+    Fragment->>Pref: getBoolean("isOpenToday", false)
+    activate Pref
+    Pref-->>Fragment: return isOpenToday
+    deactivate Pref
+    
+    alt isOpenToday == true
+        Fragment->>Pref: getInt("cardId", 0)
+        activate Pref
+        Pref-->>Fragment: return cardId
+        deactivate Pref
+        
+        Fragment->>DAO: getTarotCardById(cardId)
+        activate DAO
+        DAO->>DB: SELECT * FROM TarotCard WHERE id = ?
+        activate DB
+        DB-->>DAO: return Cursor
+        deactivate DB
+        DAO-->>Fragment: return TarotCard
+        deactivate DAO
+        
+        Fragment->>Fragment: Display card details<br/>(name, image, otherName)
+    else isOpenToday == false
+        Fragment->>Fragment: Display card back<br/>(tarot_back image)
+    end
+    
+    Fragment->>Alarm: setupAlarmService()
+    activate Alarm
+    Alarm->>Alarm: Set alarm for 6:00 AM
+    Alarm->>Service: Schedule ResetOpenDaily broadcast
+    deactivate Alarm
+    deactivate Fragment
+
+    Note over User,Service: User Draws Card
+    User->>Fragment: Click on Tarot Card
+    activate Fragment
+    
+    Fragment->>Pref: getBoolean("isOpenToday", false)
+    activate Pref
+    Pref-->>Fragment: return false
+    deactivate Pref
+    
+    alt isOpenToday == false
+        Fragment->>DAO: getRandomTarotCardForDailyDay()
+        activate DAO
+        DAO->>DB: SELECT * FROM TarotCard<br/>ORDER BY RANDOM() LIMIT 1
+        activate DB
+        DB-->>DAO: return random Cursor
+        deactivate DB
+        DAO-->>Fragment: return TarotCard
+        deactivate DAO
+        
+        Fragment->>Pref: putInt("cardId", card.getId())
+        activate Pref
+        Pref-->>Fragment: stored
+        deactivate Pref
+        
+        Fragment->>Pref: putBoolean("isOpenToday", true)
+        activate Pref
+        Pref-->>Fragment: stored
+        deactivate Pref
+        
+        Fragment->>Pref: commit()
+        activate Pref
+        Pref-->>Fragment: success
+        deactivate Pref
+        
+        Fragment->>Fragment: flipTarotCard(card)<br/>- Animate flip<br/>- Show card details
+        Fragment-->>User: Display drawn card
+    else isOpenToday == true
+        Fragment-->>User: Card already drawn today
+    end
+    deactivate Fragment
+
+    Note over User,Service: Daily Reset (6:00 AM)
+    Alarm->>Service: Broadcast at 6:00 AM
+    activate Service
+    
+    Service->>Pref: getSharedPreferences("tarotDailyDay")
+    activate Pref
+    Pref-->>Service: return preferences
+    deactivate Pref
+    
+    Service->>Pref: putBoolean("isOpenToday", false)
+    activate Pref
+    Pref-->>Service: stored
+    deactivate Pref
+    
+    Service->>Pref: remove("cardId")
+    activate Pref
+    Pref-->>Service: removed
+    deactivate Pref
+    
+    Service->>Pref: commit()
+    activate Pref
+    Pref-->>Service: success
+    deactivate Pref
+    
+    Service->>Alarm: Schedule next day reset
+    deactivate Service

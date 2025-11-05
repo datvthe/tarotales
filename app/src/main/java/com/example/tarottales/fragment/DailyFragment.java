@@ -33,6 +33,7 @@ import com.example.tarottales.Database.DBContext;
 import com.example.tarottales.Database.TarotCardDAO;
 import com.example.tarottales.Model.TarotCard;
 import com.example.tarottales.R;
+import com.example.tarottales.activity.LearnCardDetailActivity;
 import com.example.tarottales.service.ResetOpenDaily;
 
 import java.util.Calendar;
@@ -94,6 +95,12 @@ public class DailyFragment extends Fragment {
 
         } else {
             //mo sang intent chi tiet card
+            int cardId = pref.getInt("cardId", 0);
+            if (cardId > 0) {
+                Intent intent = new Intent(getActivity(), LearnCardDetailActivity.class);
+                intent.putExtra("cardId", cardId);
+                startActivity(intent);
+            }
         }
     }
 

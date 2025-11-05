@@ -4,9 +4,13 @@ Diagrams cho chức năng **Daily Tarot Card Draw** (Rút bài Tarot hàng ngày
 
 ## Files
 
-1. **usecase_daily_tarot.puml** - Use Case Diagram
+### PlantUML (.puml)
+1. **usecase_complete.puml** - Use Case Diagram (toàn bộ app)
 2. **erd_tarot.puml** - Entity Relationship Diagram (ERD)
 3. **sequence_daily_tarot.puml** - Sequence Diagram
+
+### Mermaid (.mmd)
+4. **sequence_daily_tarot.mmd** - Sequence Diagram (Mermaid version)
 
 ## Cách xem diagrams
 
@@ -17,9 +21,15 @@ Sử dụng [PlantUML Online Editor](http://www.plantuml.com/plantuml/uml/):
 3. Xem kết quả
 
 ### VS Code
+**PlantUML:**
 1. Cài extension: **PlantUML** by jebbs
 2. Mở file `.puml`
 3. Press `Alt+D` để xem preview
+
+**Mermaid:**
+1. Cài extension: **Markdown Preview Mermaid Support**
+2. Tạo file markdown, paste code từ `.mmd`
+3. Preview markdown (Ctrl+Shift+V)
 
 ### Command line
 ```bash
