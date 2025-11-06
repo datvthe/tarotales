@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tarottales.Database.LearnDAO;
 import com.example.tarottales.Model.TarotCard;
 import com.example.tarottales.Model.Zodiac;
 import com.example.tarottales.R;
