@@ -78,6 +78,7 @@ public class TopicDetailsActivity extends AppCompatActivity {
         ivBack.setOnClickListener(this::onClickBack);
         ivHistory.setOnClickListener(this::onClickViewHistory);
         btnSave.setOnClickListener(this::onClickSave);
+        btnAi.setOnClickListener(this::onClickAi);
     }
 
     private void onClickViewHistory(View view) {
@@ -92,6 +93,15 @@ public class TopicDetailsActivity extends AppCompatActivity {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String dateTime = currentDateTime.format(formatter);
         showNotePopup(dateTime);
+    }
+
+    private void onClickAi(View view) {
+        //mo sang intent AI tuong tac
+        Intent intent = new Intent(this, AiInteractionActivity.class);
+        intent.putExtra("card1", cards.get(0));
+        intent.putExtra("card2", cards.get(1));
+        intent.putExtra("card3", cards.get(2));
+        startActivity(intent);
     }
 
     private void showNotePopup(String dateTime) {

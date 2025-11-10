@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TarotTales"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AiInteractionActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DetailsOneItemInHistoryActivity"
             android:exported="false" />
         <activity
