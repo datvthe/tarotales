@@ -25,12 +25,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.tarottales.Database.DBContext;
-import com.example.tarottales.Database.TarotCardDAO;
 import com.example.tarottales.Model.TarotCard;
 import com.example.tarottales.R;
 import com.example.tarottales.service.ResetOpenDaily;

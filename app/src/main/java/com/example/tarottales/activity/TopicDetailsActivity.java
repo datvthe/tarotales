@@ -1,7 +1,5 @@
 package com.example.tarottales.activity;
 
-import static java.security.AccessController.getContext;
-
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.DialogInterface;
@@ -22,8 +20,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.tarottales.Database.DBContext;
-import com.example.tarottales.Database.TarotCardDAO;
 import com.example.tarottales.Model.TarotCard;
 import com.example.tarottales.R;
 import com.example.tarottales.dto.TopicHistoryDTO;
