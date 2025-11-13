@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.tarottales.Database.LearnDAO;
 import com.example.tarottales.Model.Element;
 import com.example.tarottales.Model.Planet;
 import com.example.tarottales.Model.TarotCard;
