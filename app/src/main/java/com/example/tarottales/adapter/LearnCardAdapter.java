@@ -82,11 +82,6 @@ public class LearnCardAdapter extends RecyclerView.Adapter<LearnCardAdapter.View
             view.getContext().startActivity(intent);
         }
 
-
-        // </editor-fold>
-
-
-        // view holder class
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             bindingView();
@@ -101,6 +96,4 @@ public class LearnCardAdapter extends RecyclerView.Adapter<LearnCardAdapter.View
         }
     }
 
-
 }
-
