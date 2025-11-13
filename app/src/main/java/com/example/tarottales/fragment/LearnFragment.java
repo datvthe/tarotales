@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.example.tarottales.Database.LearnDAO;
 import com.example.tarottales.Model.Element;
 import com.example.tarottales.Model.Planet;
 import com.example.tarottales.Model.TarotCard;

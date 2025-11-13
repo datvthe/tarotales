@@ -9,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.tarottales.Database.DBContext;
 import com.example.tarottales.fragment.ChatFragment;
 import com.example.tarottales.fragment.DailyFragment;
 import com.example.tarottales.fragment.LearnFragment;
